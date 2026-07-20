@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Meu Hobby · Coleção Funko Pop</title>
+<meta name="theme-color" content="#1B1F2A">
+<link id="manifestLink" rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/logo-192.png">
+<link rel="apple-touch-icon" href="assets/icons/logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-badge">FP</div>
+    <div class="brand-text">
+      <h1>Meu Hobby</h1>
+      <span>Coleção Funko Pop</span>
+    </div>
+  </div>
+
+  <nav class="primary-nav" id="primaryNav">
+    <button data-view="inicio" class="active">Início</button>
+    <button data-view="adicionar">Adicionar</button>
+    <button data-view="backup">Backup &amp; Dados</button>
+  </nav>
+
+  <div class="header-actions">
+    <button id="installBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+      Instalar app
+    </button>
+    <button class="icon-btn hamburger" id="hamburgerBtn" aria-label="Abrir menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+<div class="mobile-nav-panel" id="mobileNav">
+  <button class="close-panel" id="closePanel">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--ink)"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <button data-view="inicio" class="active">Início</button>
+  <button data-view="adicionar">Adicionar Funko</button>
+  <button data-view="backup">Backup &amp; Dados</button>
+</div>
+
+<main>
+
+  <!-- ===================== VIEW: INÍCIO (HUB) ===================== -->
+  <section class="view active" id="view-inicio">
+    <div class="view-head">
+      <div>
+        <h2>Minhas listas</h2>
+        <p>Escolha uma lista para ver seus Funko Pops.</p>
+      </div>
+    </div>
+
+    <div class="home-grid">
+      <button class="home-card collection" id="goCollection">
+        <div class="home-card-top">
+          <div class="home-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          </div>
+          <div class="home-card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+        <div>
+          <h3>Minha Coleção</h3>
+          <div class="home-card-meta" id="homeCollectionCount">0 itens</div>
+          <div class="home-card-value" id="homeCollectionValue">R$ 0,00</div>
+        </div>
+      </button>
+
+      <button class="home-card wishlist" id="goWishlist">
+        <div class="home-card-top">
+          <div class="home-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+          </div>
+          <div class="home-card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+        <div>
+          <h3>Wishlist</h3>
+          <div class="home-card-meta" id="homeWishlistCount">0 itens</div>
+        </div>
+      </button>
+    </div>
+
+    <p class="home-hint">Dica: cadastre um Funko em "Adicionar" e escolha se ele vai para a Coleção ou para a Wishlist.</p>
+  </section>
+
+  <!-- ===================== VIEW: GALERIA (Coleção ou Wishlist) ===================== -->
+  <section class="view" id="view-galeria">
+    <div class="view-head">
+      <div class="view-head-left">
+        <button class="back-btn" id="backToHome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div>
+          <h2 id="galeriaTitulo">Minha Coleção</h2>
+          <p id="galeriaSubtitulo">Todos os seus Funko Pops, catalogados em um só lugar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-row" id="statsRow">
+      <div class="stat-card red"><b id="statTotal">0</b><span>Funkos</span></div>
+      <div class="stat-card yellow"><b id="statValor">R$ 0,00</b><span>Valor total</span></div>
+      <div class="stat-card teal"><b id="statMedia">R$ 0,00</b><span>Valor médio</span></div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" id="searchInput" placeholder="Buscar por nome ou nº da caixa...">
+      </div>
+      <select id="categoryFilter">
+        <option value="">Todas as categorias</option>
+      </select>
+      <select id="sortSelect">
+        <option value="recent">Mais recentes</option>
+        <option value="name">Nome (A-Z)</option>
+        <option value="box">Nº da caixa</option>
+        <option value="value-desc">Maior valor</option>
+        <option value="value-asc">Menor valor</option>
+      </select>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="pagination" id="pagination" aria-label="Paginação do feed"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <span class="emoji">📦</span>
+      <h3 id="emptyTitle">Sua prateleira está vazia</h3>
+      <p id="emptyText">Adicione o primeiro Funko Pop da sua coleção.</p>
+      <button id="emptyAddBtn">+ Adicionar Funko</button>
+    </div>
+  </section>
+
+  <!-- ===================== VIEW: ADICIONAR ===================== -->
+  <section class="view" id="view-adicionar">
+    <div class="view-head">
+      <div>
+        <h2 id="formTitle">Adicionar Funko</h2>
+        <p>Preencha os dados para catalogar uma nova peça.</p>
+      </div>
+    </div>
+
+    <form class="form-card" id="funkoForm">
+      <input type="hidden" id="editId">
+
+      <div class="field">
+        <label>Salvar em</label>
+        <div class="list-toggle">
+          <button type="button" class="active is-collection" data-list="colecao" id="toggleColecao">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            Coleção
+          </button>
+          <button type="button" class="is-wishlist" data-list="wishlist" id="toggleWishlist">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 10-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>
+            Wishlist
+          </button>
+        </div>
+      </div>
+
+      <div class="field product-link-field" id="productLinkField">
+        <label for="productUrl">Link do produto</label>
+        <input type="url" id="productUrl" placeholder="Cole aqui o link compartilhável do marketplace">
+        <small id="productLinkHint">Na wishlist, esse link ganha um botão de compartilhar para abrir no WhatsApp com prévia do produto quando a loja oferecer miniatura e descrição.</small>
+      </div>
+
+      <div class="field">
+        <label for="imgUrl">Link da imagem</label>
+        <input type="url" id="imgUrl" placeholder="https://exemplo.com/imagem.jpg">
+        <div class="img-preview" id="imgPreview"><span>Pré-visualização da imagem</span></div>
+      </div>
+
+      <div class="field">
+        <label for="nome">Nome / Descrição</label>
+        <textarea id="nome" placeholder="Ex: Batman - DC Comics - Glow in the Dark"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="categoria">Categoria / Licença</label>
+        <input type="text" id="categoria" placeholder="Ex: Stranger Things, Marvel, Animes...">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="boxNumber">Número da caixa</label>
+          <input type="text" id="boxNumber" placeholder="Ex: 155">
+        </div>
+        <div class="field">
+          <label for="valor">Valor (R$)</label>
+          <input type="number" id="valor" step="0.01" min="0" placeholder="0,00">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" id="submitBtn">Salvar na coleção</button>
+        <button type="button" class="btn-ghost" id="cancelEditBtn" style="display:none;">Cancelar edição</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ===================== VIEW: BACKUP ===================== -->
+  <section class="view" id="view-backup">
+    <div class="view-head">
+      <div>
+        <h2>Backup &amp; Dados</h2>
+        <p>Seus dados ficam salvos apenas neste navegador. Exporte com frequência para não perder nada.</p>
+      </div>
+    </div>
+
+    <div class="backup-grid">
+      <div class="backup-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        <h3>Exportar backup</h3>
+        <p>Baixe um arquivo .json com todos os Funkos da Coleção e da Wishlist.</p>
+        <button class="btn-primary" id="exportBtn">Baixar backup (.json)</button>
+      </div>
+      <div class="backup-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21V9m0 0l4 4m-4-4l-4 4M4 7V5a2 2 0 012-2h12a2 2 0 012 2v2"/></svg>
+        <h3>Restaurar backup</h3>
+        <p>Selecione um arquivo .json exportado anteriormente para restaurar sua coleção.</p>
+        <button class="btn-ghost" id="restoreBtn">Selecionar arquivo</button>
+        <input type="file" id="restoreInput" accept="application/json">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="bottom-tabbar" id="bottomTabbar">
+  <button data-view="inicio" class="active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10"/></svg>
+    Início
+  </button>
+  <button data-view="adicionar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+    Adicionar
+  </button>
+  <button data-view="backup">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+    Backup
+  </button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
